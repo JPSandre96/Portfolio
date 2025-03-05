@@ -1,0 +1,32 @@
+insert into estado (Nome,UF)
+values
+('Paraná','PR'),
+('São Paulo','SP'),
+('Santa Catarina','SC');
+
+select * from estado;
+
+
+insert into municipio (Nome, codIBGE, Estado_idEstado)
+values 
+('Ibaiti', '4109708', '1'),
+('Ourinhos','3534708','2'),
+('Pomerode','4213203','3');
+
+select * from estado;
+
+insert into Cliente (Nome, CPF, Celular, EndLogradouro, EndNumero, EndMunicipio, EndCEP, Municipio_ID)
+values
+('Antonio', '99876543219', '43997510609','Rua Nunes Machado','465','1','84950000','1'),
+('Maria', '7865345658', '47995881717','Rua Orleans e Bragança','1080','3','88020188','3'),
+('José', '7832154865', '11996765676','Avenida das Nações','830','2','13106508','2');
+
+select * from Cliente;
+
+insert into ContaReceber (Fk_Cliente_ID, FaturaVendaID, DataConta, DataVencimento, Valor, Situacao)
+values
+(1, 2205, '2024-02-011', '2025-03-06', 150.00, 3),
+(2, 2363, '2024-05-09', '2025-06-08', 470.00, 1),
+(3, 2565, '2024-08-10', '2025-08-02', 390.00, 2);
+
+select * from ContaReceber;
