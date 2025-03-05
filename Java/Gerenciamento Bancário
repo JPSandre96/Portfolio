@@ -1,0 +1,94 @@
+package com.mycompany.gerenciabanco;
+
+import java.util.Scanner;//entrada de dados
+
+/**
+ *
+ *
+ */
+class Cliente{
+    private String nome;
+    private String sobrenome;
+    private String cpf;
+    private double saldo;
+    
+    public Cliente(String nome, String sobrenome, String cpf) {
+    this.nome = nome;
+    this.sobrenome = sobrenome;
+    this.cpf = cpf;
+    this.saldo = 0.0;
+    }
+
+    
+// Métodos Classe Cliente
+
+public void ConsultadeSaldo() {
+        System.out.println("Seu saldo é de R$" + saldo);
+    }// fim método consulta de saldo
+    
+public void depositar (double valor){
+    if (valor > 0) {
+        saldo += valor;
+        System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
+    } else {
+        System.out.println("Valor Invalido.");
+    }
+}// fim método depositar
+
+public void sacar(double valor) {
+    if (valor > 0 && valor <= saldo) {
+    saldo -= valor;
+    System.out.println("Saque de R$" + valor + " realizado com sucesso.");
+    } else {
+        System.out.println("Saldo insuficiente ou valor inválido.");
+        
+    
+  }
+}// fim método sacar
+}//fim classe cliente
+
+public class GerenciaBanco {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Favor informar seu nome:");
+        String nome = scanner.nextLine();
+        System.out.println("Favor informar seu sobrenome:");
+        String sobrenome = scanner.nextLine();
+        System.out.println("Favor informar seu CPF:");
+        String cpf = scanner.nextLine();
+        //instanciando um objeto da classe cliente
+        Cliente cliente = new Cliente(nome, sobrenome, cpf);
+        
+        boolean continuar = true;
+        while (continuar) {
+            System.out.println("Escolha a operação desejada:");
+            System.out.println("1 - Consultar o saldo");
+            System.out.println("2 - Realizar depósito");
+            System.out.println("3 - Realizar saque");
+            System.out.println("4 - Encerrar aplicação");
+            
+            int escolha = scanner.nextInt();
+            switch (escolha) {
+                case 1 -> cliente.ConsultadeSaldo();
+                case 2 -> {
+                    System.out.println("Informar o valor de depósito:");
+                    double valorDeposito = scanner.nextDouble();
+                    cliente.depositar(valorDeposito);
+                }
+                case 3 -> {
+                    System.out.println("Informar o valor a ser sacado:");
+                    double valorSaque = scanner.nextDouble();
+                    cliente.sacar(valorSaque);
+                }
+                case 4 -> {
+                    continuar = false;
+                    System.out.println("Operação encerrada.");
+                }
+                default -> System.out.println("Opção invalida, tente novamente.");
+                    
+            }
+        }
+        scanner.close();
+    }
+}
